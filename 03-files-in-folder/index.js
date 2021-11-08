@@ -10,12 +10,13 @@ function mySplit(elem) {
 	name = a.slice(0, y).join('');
 	return `${name} - ${type}`;
 }
-//var files = fs.readdirSync(testFolder, (err, files) => {});
-const files = fs.readdirSync(testFolder, {withFileTypes: true}).filter(item => !item.isDirectory()).map(item => item.name);
+fs.readdir(testFolder, {withFileTypes: true} , function (err, items) {
+	let files = items.filter(item => !item.isDirectory()).map(item => item.name);
 
-for (let i = 0; i < files.length; i++) {
-	fs.stat(`./03-files-in-folder/secret-folder/${files[i]}`, (err, stats) => {
-		fileSize = stats.size;
-		console.log(mySplit(files[i]) + ` - ${fileSize / 1000}kb`);
-	})
-}
+	for (let i = 0; i < files.length; i++) {
+		fs.stat(`./03-files-in-folder/secret-folder/${files[i]}`, (err, stats) => {
+			fileSize = stats.size;
+			console.log(mySplit(files[i]) + ` - ${fileSize / 1000}kb`);
+		})
+	}
+})
