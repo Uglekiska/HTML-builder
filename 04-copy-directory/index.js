@@ -1,9 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const testFolder = './04-copy-directory/files/';
-var filesO = fs.readdirSync(testFolder, {
-	withFileTypes: true
-}).filter(item => !item.isDirectory()).map(item => item.name);
+var filesO = fs.readdirSync(testFolder, (err, files) => {});
 
 function copyFolder() {
 
