@@ -10,12 +10,8 @@ function mySplit(elem) {
 	name = a.slice(0, y).join('');
 	return `${name} - ${type}`;
 }
-
-const files = fs.readdirSync(testFolder, {
-		withFileTypes: true
-	})
-	.filter(item => !item.isDirectory())
-	.map(item => item.name);
+//var files = fs.readdirSync(testFolder, (err, files) => {});
+const files = fs.readdirSync(testFolder, {withFileTypes: true}).filter(item => !item.isDirectory()).map(item => item.name);
 
 for (let i = 0; i < files.length; i++) {
 	fs.stat(`./03-files-in-folder/secret-folder/${files[i]}`, (err, stats) => {
