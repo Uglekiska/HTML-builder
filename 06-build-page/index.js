@@ -26,10 +26,10 @@ fs.readdir('./06-build-page/styles/', { //выбираем css файлы
 	}
 });
 
-fs.open('./06-build-page/project-dist/template.html', 'w', (err) => {});
-fs.appendFile('./06-build-page/project-dist/template.html', '', (err) => {});
+fs.open('./06-build-page/project-dist/index.html', 'w', (err) => {});
+fs.appendFile('./06-build-page/project-dist/index.html', '', (err) => {});
 fs.readFile(`./06-build-page/template.html`, 'utf8', (err, data) => { //читаем файл
-	fs.appendFile('./06-build-page/project-dist/template.html', `${data}`, (err) => {}); //записывает файл
+	fs.appendFile('./06-build-page/project-dist/index.html', `${data}`, (err) => {}); //записывает файл
 	fs.readdir('./06-build-page/components/', { //переписывает строки в html файле
 		withFileTypes: true
 	}, function (err, items) {
@@ -46,7 +46,7 @@ fs.readFile(`./06-build-page/template.html`, 'utf8', (err, data) => { //чита
 					fs.readFile(`./06-build-page/components/footer.html`, 'utf8', (err, data3) => {
 						let html3 = data3;
 						let result1 = data.replace(/{{header}}/g, `${html1}`).replace(/{{articles}}/g, `${html2}`).replace(/{{footer}}/g, `${html3}`);
-						fs.writeFile('./06-build-page/project-dist/template.html', result1, 'utf8', function (err) {});
+						fs.writeFile('./06-build-page/project-dist/index.html', result1, 'utf8', function (err) {});
 					});
 				});
 			});
@@ -60,7 +60,7 @@ fs.readFile(`./06-build-page/template.html`, 'utf8', (err, data) => { //чита
 						fs.readFile(`./06-build-page/components/about.html`, 'utf8', (err, data4) => {
 							let html4 = data4;
 							let result2 = data.replace(/{{header}}/g, `${html1}`).replace(/{{articles}}/g, `${html2}`).replace(/{{footer}}/g, `${html3}`).replace(/{{about}}/g, `${html4}`);
-							fs.writeFile('./06-build-page/project-dist/template.html', result2, 'utf8', function (err) {});
+							fs.writeFile('./06-build-page/project-dist/index.html', result2, 'utf8', function (err) {});
 						});
 					});
 				});
